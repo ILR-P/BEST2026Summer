@@ -217,12 +217,22 @@
         let currentQuestion = 0;
         const answers = [];
 
+        function updateNavButtons() {
+            const hasAnswer = !!answers[currentQuestion];
+            const isLast = currentQuestion === questions.length - 1;
+
+            document.getElementById('prevBtn').classList.toggle('hidden', currentQuestion === 0);
+            document.getElementById('nextBtn').classList.toggle('hidden', isLast || !hasAnswer);
+            document.getElementById('submitBtn').classList.toggle('hidden', !isLast || !hasAnswer);
+        }
+
         function renderQuestion() {
             const q = questions[currentQuestion];
             const progress = Math.round((currentQuestion / questions.length) * 100);
             document.getElementById('progressLabel').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
             document.getElementById('progressPercent').textContent = `${progress}%`;
             document.getElementById('progressBar').style.width = `${progress}%`;
+
             const selected = answers[currentQuestion];
             document.getElementById('questionContent').innerHTML = `
             <div class="question-slide">
@@ -230,6 +240,7 @@
                 <div class="space-y-3">
                     ${q.options.map(opt => `
                         <button class="option-btn w-full text-left px-4 py-3 rounded-xl flex items-center gap-3 ${selected === opt.letter ? 'selected' : ''}"
+                                data-letter="${opt.letter}"
                                 onclick="selectOption('${opt.letter}', this)">
                             <span class="option-letter">${opt.letter}</span>
                             <span class="option-text text-[#432818] text-sm md:text-base leading-snug">${opt.text}</span>
@@ -237,34 +248,37 @@
                     `).join('')}
                 </div>
             </div>`;
-            document.getElementById('prevBtn').classList.toggle('hidden', currentQuestion === 0);
-            document.getElementById('nextBtn').classList.toggle('hidden', currentQuestion === questions.length - 1 || !answers[currentQuestion]);
-            document.getElementById('submitBtn').classList.toggle('hidden', currentQuestion !== questions.length - 1 || !answers[currentQuestion]);
+
+            updateNavButtons();
         }
 
         function selectOption(letter, buttonElement) {
-            answers[currentQuestion] = letter;
-            
-            // Remove 'just-selected' class from all buttons
-            document.querySelectorAll('.option-btn').forEach(btn => {
-                btn.classList.remove('just-selected');
-            });
-            
-            // Add animation class to only the clicked button
+            // Deselect the previously selected button in the DOM (no re-render)
+            const previouslySelected = document.querySelector('.option-btn.selected');
+            if (previouslySelected) {
+                previouslySelected.classList.remove('selected');
+            }
+
+            // Select the clicked button
+            buttonElement.classList.add('selected');
             buttonElement.classList.add('just-selected');
-            
-            // Remove the animation class after animation completes
+
+            // Remove the pulse animation class after it finishes
             setTimeout(() => {
                 buttonElement.classList.remove('just-selected');
             }, 500);
-            
-            renderQuestion();
+
+            // Save the answer
+            answers[currentQuestion] = letter;
+
+            // Only update the nav buttons, not the whole question
+            updateNavButtons();
         }
 
         function scrollToProgress() {
             const progressSection = document.getElementById('progressSection');
             if (progressSection) {
-                const yOffset = -20; // 20px above the progress bar
+                const yOffset = -20;
                 const y = progressSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
                 window.scrollTo({top: y, behavior: 'smooth'});
             }
