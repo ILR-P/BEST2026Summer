@@ -8,6 +8,16 @@
     <link rel="icon" type="image/x-icon" href="https://bestcj.ro/wp-content/uploads/2014/11/favicon.ico?">
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26SYNTS35M"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-26SYNTS35M');
+    </script>
 </head>
 
 <body class="bg-[#E9EDC9] min-h-screen flex flex-col font-sans text-[#432818]">
