@@ -5,28 +5,32 @@
 
             <!-- Logo Section - Two Separate Buttons -->
             <div class="flex items-center gap-3 md:gap-6">
-                <!-- BEST Logo Button -->
-                <a href="https://bestcj.ro/" target="_blank" rel="noopener noreferrer"
-                    class="logo-link-best group flex-shrink-0 transition">
-                    <div class="logo-container">
-                        <img src="/images/logoBEST.png" alt="BEST Logo"
-                            class="logo-default h-14 md:h-[clamp(56px,7vw,80px)] w-auto object-contain">
-                        <img src="/images/logoBEST_red.png" alt="BEST Logo Red"
-                            class="logo-hover h-14 md:h-[clamp(56px,7vw,80px)] w-auto object-contain">
-                    </div>
-                </a>
 
                 <!-- Courses Logo Button -->
                 <a href="https://www.best.eu.org/courses/welcome.jsp" target="_blank" rel="noopener noreferrer"
                     class="logo-link-courses group flex-shrink-0 transition pr-4">
                     <div class="logo-container">
                         <img src="/images/logoCourses.png" alt="Courses Logo"
-                            class="logo-default h-7 md:h-[clamp(28px,3.5vw,40px)] w-auto object-contain">
+                            class="logo-default h-6 md:h-[clamp(20px,2.5vw,28px)] w-auto object-contain">
                         <img src="/images/logoCourses_red.png" alt="Courses Logo Red"
-                            class="logo-hover h-7 md:h-[clamp(28px,3.5vw,40px)] w-auto object-contain">
+                            class="logo-hover h-6 md:h-[clamp(20px,2.5vw,28px)] w-auto object-contain">
                     </div>
                 </a>
-            </div>
+
+                
+                <!-- BEST Logo Button -->
+                <a href="https://bestcj.ro/" target="_blank" rel="noopener noreferrer"
+                    class="logo-link-best group flex-shrink-0 transition">
+                    <div class="logo-container">
+                        <img src="/images/logoBEST.png" alt="BEST Logo"
+                            class="logo-default h-16 md:h-[clamp(56px,7vw,80px)] w-auto object-contain">
+                        <img src="/images/logoBEST_red.png" alt="BEST Logo Red"
+                            class="logo-hover h-16 md:h-[clamp(56px,7vw,80px)] w-auto object-contain">
+                    </div>
+                </a>
+
+
+            </div> 
 
             <!-- Desktop Navigation Links -->
             <div class="hidden md:flex items-center space-x-4 lg:space-x-6 md:ml-4 lg:ml-10">
